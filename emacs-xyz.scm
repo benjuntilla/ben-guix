@@ -1,4 +1,4 @@
-(define-module (ben-guix emacs-xyz)
+(define-module (emacs-xyz)
   #:use-module (guix packages)
   #:use-module (guix git-download)
   #:use-module (guix build-system emacs)
