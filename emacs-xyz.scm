@@ -4,6 +4,7 @@
   #:use-module (guix git-download)
   #:use-module (guix build-system emacs)
   #:use-module ((guix licenses) #:prefix license:)
+  #:use-module (gnu packages emacs-xyz)
   #:use-module (gnu packages emacs))
 
 (define-public emacs-dirvish-hlissner
