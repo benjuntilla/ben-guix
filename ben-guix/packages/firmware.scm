@@ -1,4 +1,4 @@
-(define-module (firmware)
+(define-module (ben-guix packages firmware)
   #:use-module (gnu packages compression)
   #:use-module (gnu packages cpio)
   #:use-module (gnu packages efi)
