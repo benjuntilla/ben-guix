@@ -3,6 +3,7 @@
   #:use-module (gnu services)
   #:use-module (gnu services dbus)
   #:use-module (gnu services shepherd)
+  #:use-module (gnu services desktop)
   #:use-module (guix records)
   #:use-module (guix gexp)
   #:use-module (guix profiles)
@@ -25,6 +26,7 @@
    (extensions
     (list
      (service-extension profile-service-type list)
+     (service-extension polkit-service-type list)
      (service-extension dbus-root-service-type list)
      (service-extension shepherd-root-service-type
                         fwupd-shepherd-service)))))
