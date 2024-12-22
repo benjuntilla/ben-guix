@@ -19,11 +19,16 @@
     (name "fwupd-nonfree-ben")
     (arguments
      (substitute-keyword-arguments (package-arguments fwupd)
-       ((#:configure-flags _
-         #~'())
+       ;; https://issues.guix.gnu.org/60065
+       ((#:phases original-phases)
+        #~(modify-phases #$original-phases
+            (add-before 'configure 'set-polkit-rules-dir
+              (lambda _
+                (setenv "PKG_CONFIG_POLKIT_GOBJECT_1_ACTIONDIR"
+                        (string-append #$output "/share/polkit-1/actions"))))))
+       ((#:configure-flags _)
         #~(list "--wrap-mode=nofallback"
                 "-Dsystemd=false"
-                "-DPOLKIT_ACTIONDIR=/etc/polkit-1/actions"
                 (string-append "-Defi_os_dir="
                                #$gnu-efi "/lib")
                 "-Defi_binary=false"
