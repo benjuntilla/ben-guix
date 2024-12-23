@@ -26,7 +26,6 @@
    (extensions
     (list
      (service-extension profile-service-type list)
-     (service-extension polkit-service-type list)
      (service-extension dbus-root-service-type list)
      (service-extension shepherd-root-service-type
                         fwupd-shepherd-service)))))

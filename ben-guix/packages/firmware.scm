@@ -32,7 +32,7 @@
                 "-Dsystemd=false"
                 (string-append "-Defi_os_dir="
                                #$gnu-efi "/lib")
-                "-Defi_binary=false"
+                "-Defi_binary=true"
                 (string-append "-Dudevdir="
                                #$output "/lib/udev")
                 "--localstatedir=/var"
