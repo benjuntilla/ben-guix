@@ -74,3 +74,26 @@ the example of .latexmkrc to use \"LATEXENC\": # .latexmkrc starts $kanji =
 $kanji\"; $bibtex = \"pbibtex $kanji\"; $dvipdf = dvipdfmx -o %D %S'; $pdf_mode =
 3; # .latexmkrc ends.")
     (license #f)))
+
+(define-public emacs-ob-mermaid
+  (package
+    (name "emacs-ob-mermaid")
+    (version "0.0.1") ;; You may want to check for a more specific version
+    (source (origin
+              (method git-fetch)
+              (uri (git-reference
+                    (url "https://github.com/arnm/ob-mermaid")
+                    (commit "master"))) ;; You might want to use a specific commit hash instead
+              (sha256
+               (base32
+                "1hmpbmwy5cr0p0w89kkfmdip4yh2vps1har5ivh04g83vmhrw18m"))
+              (file-name (git-file-name name version))))
+    (build-system emacs-build-system)
+    (home-page "https://github.com/arnm/ob-mermaid")
+    (synopsis "Generate mermaid diagrams using org-mode and org-babel")
+    (description
+     "This package allows you to generate mermaid diagrams using org-mode,
+      org-babel and mermaid-cli. It supports various output formats including
+      SVG, PNG and PDF, with customizable properties like width, height, scale,
+      theme, and background color.")
+    (license license:gpl3+))) ;; You should verify the actual license
