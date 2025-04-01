@@ -97,3 +97,33 @@ $kanji\"; $bibtex = \"pbibtex $kanji\"; $dvipdf = dvipdfmx -o %D %S'; $pdf_mode 
       SVG, PNG and PDF, with customizable properties like width, height, scale,
       theme, and background color.")
     (license license:gpl3+))) ;; You should verify the actual license
+
+(define-public emacs-aidermacs
+  (package
+    (name "emacs-aidermacs")
+    (version "20250329.444")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/MatthewZMD/aidermacs.git")
+             (commit "a252760d74a06c4287244ac9d5f4fb19ef2e33fb")))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "17l53phblh4k6w14vr9ljbbwj8kdaab4cpv85slf7m03fq5yash0"))))
+    (build-system emacs-build-system)
+    (propagated-inputs (list emacs-transient emacs-compat))
+    (home-page "https://github.com/MatthewZMD/aidermacs")
+    (synopsis "AI pair programming with Aider")
+    (description
+     "Aidermacs integrates with Aider (https://aider.chat/) for AI-assisted code
+modification in Emacs.  Aider lets you pair program with LLMs to edit code in
+your local git repository.  It works with both new projects and existing code
+bases, supporting Claude, @code{DeepSeek}, @code{ChatGPT}, and can connect to
+almost any LLM including local models.  Think of it as having a helpful coding
+partner that can understand your code, suggest improvements, fix bugs, and even
+write new code for you.  Whether you're working on a new feature, debugging, or
+just need help understanding some code, Aidermacs provides an intuitive way to
+collaborate with AI while staying in your familiar Emacs environment.
+Originally forked from Kang Tu <tninja@@gmail.com>'s Aider.el.")
+    (license #f)))
