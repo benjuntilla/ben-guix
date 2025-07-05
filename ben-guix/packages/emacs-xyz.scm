@@ -7,41 +7,6 @@
   #:use-module (gnu packages emacs-xyz)
   #:use-module (gnu packages emacs))
 
-(define-public emacs-dirvish-hlissner
-  (package
-    (name "emacs-dirvish-hlissner")
-    (version "2.0.53")
-    (source (origin
-              (method git-fetch)
-              (uri (git-reference
-                    (url "https://github.com/hlissner/dirvish")
-                    (commit "5f046190e886fb0a2dae7e884cc7cd9bcf48ac26")))
-              (sha256
-               (base32
-                "0vpmx982anb7gbfqiq5ccfnqxi653m44yr0pq1awag71xf2xn92l"))
-              (file-name (git-file-name name version))))
-    (build-system emacs-build-system)
-    (arguments
-     (list
-      #:phases
-      #~(modify-phases %standard-phases
-          ;; Move the extensions source files to the top level, which
-          ;; is included in the EMACSLOADPATH.
-          (add-after 'unpack 'move-source-files
-            (lambda _
-              (let ((el-files (find-files "./extensions" ".*\\.el$")))
-                (for-each (lambda (f)
-                            (rename-file f (basename f)))
-                          el-files)))))))
-    (home-page "https://github.com/hlissner/dirvish")
-    (synopsis "Improved version of the Emacs package Dired")
-    (description
-     "Dirvish is an improved version of the Emacs inbuilt package Dired.  It
-not only gives Dired an appealing and highly customizable user interface, but
-also comes together with almost all possible parts required for full usability
-as a modern file manager.")
-    (license license:gpl3+)))
-
 (define-public emacs-auctex-latexmk
   (package
     (name "emacs-auctex-latexmk")
@@ -98,32 +63,3 @@ $kanji\"; $bibtex = \"pbibtex $kanji\"; $dvipdf = dvipdfmx -o %D %S'; $pdf_mode 
       theme, and background color.")
     (license license:gpl3+))) ;; You should verify the actual license
 
-(define-public emacs-aidermacs
-  (package
-    (name "emacs-aidermacs")
-    (version "20250329.444")
-    (source
-     (origin
-       (method git-fetch)
-       (uri (git-reference
-             (url "https://github.com/MatthewZMD/aidermacs.git")
-             (commit "a252760d74a06c4287244ac9d5f4fb19ef2e33fb")))
-       (file-name (git-file-name name version))
-       (sha256
-        (base32 "17l53phblh4k6w14vr9ljbbwj8kdaab4cpv85slf7m03fq5yash0"))))
-    (build-system emacs-build-system)
-    (propagated-inputs (list emacs-transient emacs-compat))
-    (home-page "https://github.com/MatthewZMD/aidermacs")
-    (synopsis "AI pair programming with Aider")
-    (description
-     "Aidermacs integrates with Aider (https://aider.chat/) for AI-assisted code
-modification in Emacs.  Aider lets you pair program with LLMs to edit code in
-your local git repository.  It works with both new projects and existing code
-bases, supporting Claude, @code{DeepSeek}, @code{ChatGPT}, and can connect to
-almost any LLM including local models.  Think of it as having a helpful coding
-partner that can understand your code, suggest improvements, fix bugs, and even
-write new code for you.  Whether you're working on a new feature, debugging, or
-just need help understanding some code, Aidermacs provides an intuitive way to
-collaborate with AI while staying in your familiar Emacs environment.
-Originally forked from Kang Tu <tninja@@gmail.com>'s Aider.el.")
-    (license #f)))
