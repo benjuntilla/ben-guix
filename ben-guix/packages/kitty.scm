@@ -1,4 +1,4 @@
-(define-module (ben packages kitty)
+(define-module (ben-guix packages kitty)
   #:use-module ((guix licenses) #:prefix license:)
   #:use-module (guix build-system cargo)
   #:use-module (guix build-system cmake)
